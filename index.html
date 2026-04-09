@@ -1,0 +1,326 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src = "script.js"></script>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+</body>
+</html> -->
+<!--!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather App</title>
+
+ 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+
+  <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Weather App</a>
+    </div>
+  </nav>
+
+ 
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+
+        <div class="card shadow p-4">
+          <h3 class="text-center mb-3">Check Weather</h3>
+
+          <input type="text" id="city" class="form-control mb-3" placeholder="Enter city name">
+
+          <button class="btn btn-primary w-100" onclick="getWeather()">
+            Get Weather
+          </button>
+
+          <div id="result" class="mt-4 text-center"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+ 
+  <script src="script.js"></script>
+
+</body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimbus — Weather</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <!-- Weather Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Animated Background Layers -->
+  <div class="bg-scene" id="bgScene">
+    <div class="bg-gradient" id="bgGradient"></div>
+    <div class="bg-overlay"></div>
+    <canvas class="particle-canvas" id="particleCanvas"></canvas>
+  </div>
+
+  <!-- Rain Container -->
+  <div class="rain-container" id="rainContainer"></div>
+
+  <!-- Stars Container -->
+  <div class="stars-container" id="starsContainer"></div>
+
+  <!-- Main App -->
+  <div class="app-wrapper">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon"><i class="fas fa-cloud-sun"></i></span>
+        <span class="logo-text">Nimbus</span>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="locationBtn" title="Use my location">
+          <i class="fas fa-location-crosshairs"></i>
+        </button>
+        <button class="icon-btn theme-toggle" id="themeToggle" title="Toggle theme">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+      <div class="search-card glass">
+        <div class="search-inner">
+          <i class="fas fa-magnifying-glass search-icon-static"></i>
+          <input
+            type="text"
+            id="cityInput"
+            class="search-input"
+            placeholder="Search city…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="search-btn" id="searchBtn" onclick="getWeather()">
+            <span class="btn-label">Search</span>
+            <i class="fas fa-arrow-right btn-arrow"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loading State -->
+    <div class="loader-wrapper" id="loaderWrapper">
+      <div class="loader-ring">
+        <div></div><div></div><div></div><div></div>
+      </div>
+      <p class="loader-text">Fetching weather data…</p>
+    </div>
+
+    <!-- Error State -->
+    <div class="error-card glass" id="errorCard">
+      <div class="error-icon"><i class="fas fa-triangle-exclamation"></i></div>
+      <p class="error-title" id="errorTitle">City not found</p>
+      <p class="error-sub" id="errorSub">Please check the spelling and try again.</p>
+    </div>
+
+    <!-- Weather Results -->
+    <div class="weather-results" id="weatherResults">
+
+      <!-- Hero Card -->
+      <div class="hero-card glass" id="heroCard">
+        <div class="hero-top">
+          <div class="hero-location">
+            <h1 class="city-name" id="cityName">—</h1>
+            <p class="country-name" id="countryName">—</p>
+          </div>
+          <div class="hero-datetime">
+            <p class="current-time" id="currentTime">—</p>
+            <p class="current-date" id="currentDate">—</p>
+          </div>
+        </div>
+
+        <div class="hero-main">
+          <div class="weather-icon-wrap" id="weatherIconWrap">
+            <img class="weather-icon-img" id="weatherIconImg" src="" alt="weather" />
+          </div>
+          <div class="temp-block">
+            <div class="temp-main" id="tempMain">—°</div>
+            <div class="weather-desc" id="weatherDesc">—</div>
+          </div>
+        </div>
+
+        <div class="hero-bottom">
+          <div class="pill-stat">
+            <i class="fas fa-temperature-arrow-up"></i>
+            <span id="tempMax">—°</span>
+            <label>High</label>
+          </div>
+          <div class="pill-divider"></div>
+          <div class="pill-stat">
+            <i class="fas fa-temperature-arrow-down"></i>
+            <span id="tempMin">—°</span>
+            <label>Low</label>
+          </div>
+          <div class="pill-divider"></div>
+          <div class="pill-stat">
+            <i class="fas fa-shirt"></i>
+            <span id="feelsLike">—°</span>
+            <label>Feels Like</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+
+        <div class="stat-card glass" style="--delay: 0.05s">
+          <div class="stat-icon-wrap humidity">
+            <i class="fas fa-droplet"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="humidity">—</span>
+            <span class="stat-label">Humidity</span>
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" id="humidityBar"></div>
+          </div>
+        </div>
+
+        <div class="stat-card glass" style="--delay: 0.1s">
+          <div class="stat-icon-wrap wind">
+            <i class="fas fa-wind"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="windSpeed">—</span>
+            <span class="stat-label">Wind Speed</span>
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar wind-bar" id="windBar"></div>
+          </div>
+        </div>
+
+        <div class="stat-card glass" style="--delay: 0.15s">
+          <div class="stat-icon-wrap pressure">
+            <i class="fas fa-gauge-high"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="pressure">—</span>
+            <span class="stat-label">Pressure</span>
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar pressure-bar" id="pressureBar"></div>
+          </div>
+        </div>
+
+        <div class="stat-card glass" style="--delay: 0.2s">
+          <div class="stat-icon-wrap visibility">
+            <i class="fas fa-eye"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="visibility">—</span>
+            <span class="stat-label">Visibility</span>
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar visibility-bar" id="visibilityBar"></div>
+          </div>
+        </div>
+
+        <div class="stat-card glass" style="--delay: 0.25s">
+          <div class="stat-icon-wrap sunrise">
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="sunrise">—</span>
+            <span class="stat-label">Sunrise</span>
+          </div>
+        </div>
+
+        <div class="stat-card glass" style="--delay: 0.3s">
+          <div class="stat-icon-wrap sunset">
+            <i class="fas fa-moon"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value" id="sunset">—</span>
+            <span class="stat-label">Sunset</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <footer class="app-footer">
+      Powered by OpenWeatherMap &nbsp;·&nbsp; Nimbus © 2025
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
